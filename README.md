@@ -1,46 +1,122 @@
-# Getting Started with Create React App
+crar carpeta my-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+npx create-react-app my-app --template typescript
 
-## Available Scripts
+npm start
 
-In the project directory, you can run:
+dejar lo suiguinte en el achivo App.tsx:
+```typescript
+//App.tsx
+import './App.css';
 
-### `npm start`
+function App() {
+  return (
+    <div className="App">
+    </div>
+  );
+}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+export default App;
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+Componete: Conceptualmente, los componentes son como las funciones de JavaScript. Aceptan entradas arbitrarias (llamadas “props”) y retornan elementos de React que describen lo que debe aparecer en la pantalla.
 
-### `npm test`
+Crear un archivo Persona.tsx dentro de src
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```typescript
+export const Persona = () => {
+    return (<div>Hola Mundo</div>);
+}
+```
 
-### `npm run build`
+En el archivo App.tsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```typescript
+import './App.css';
+import {Persona} from './Persona'
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+//let nombre:string;
+//nombre = "Hola";
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+function App() {
+  return (
+    <div className='App'><Persona/></div>
+  );
+}
 
-### `npm run eject`
+export default App;
+```
+pasaje de parametros con props. Modificar App.tsx
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```typescript
+<div className='App'><Persona nombre={"Juan"}/></div>
+```
+Archivo Persona.tsx
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```typescript
+export const Persona = (props:any) => {
+    return (
+    <div>
+        <p>Hola Mundo {props.nombre}</p>
+    </div> );
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Modificado App.tsx:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+``` typescript
+function App() {
+  return (
+    <div className='App'> 
+    <Persona nombre={"Juan"}/> 
+    <Persona nombre={"Pedro"}/>
+     </div>
+  );
+```
+Las interfaces de TypeScript sirven para definir la estructura de los objetos, especificar sus propiedades y métodos, y verificar los tipos de datos. Esto ayuda a los desarrolladores a detectar errores de tipo durante el desarrollo
 
-## Learn More
+dentro de Persona.tsx
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```typescript
+export interface iPersona{
+    nombre: string;
+    edad: number|null;
+}
+export const Persona = (props:iPersona) => {
+    return (
+        <p>Hola Mundo {props.nombre} de {props.edad} </p>
+    );
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+El uso de useState
+
+```typescript
+import { text } from "node:stream/consumers";
+import { useState } from "react";
+
+interface iPersona{
+    nombre: string;
+    edad: number|null;
+}
+
+export const Persona = (props:iPersona) => {
+    const[visible, setVisible] = useState<boolean>(true);
+    function Visible(){
+        if (visible === true){
+            setVisible(false);
+        }
+        else{
+            setVisible(true);        
+        }
+    }
+
+    return (
+        <div>
+        <p hidden = {visible}>Hola Mundo {props.nombre} de {props.edad} </p>
+        <button onClick={Visible}> {visible ? "Flase": "True" } </button>
+        </div>
+    );
+}
+
+```
