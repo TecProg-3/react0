@@ -162,10 +162,45 @@ Este código permite alternar la visibilidad del texto con un botón.
 
 ---
 
+Aquí tienes tres ejercicios prácticos para reforzar lo aprendido sobre React con TypeScript:  
+
+### **Ejercicio 1: Agregar un Nuevo Prop al Componente Persona**  
+**Objetivo:**  
+- Ampliar el componente `Persona` para aceptar un nuevo `prop` llamado `ocupacion`.  
+- Mostrarlo en pantalla junto con el `nombre` y la `edad`.  
+
+**Instrucciones:**  
+1. Modifica la **interfaz `iPersona`** en `Persona.tsx` para incluir `ocupacion` como un `string`.  
+2. Asegúrate de que el componente muestre el nombre, la edad y la ocupación correctamente.  
+3. En `App.tsx`, usa el componente `Persona` para mostrar diferentes personas con su respectiva ocupación.  
+
+---
+
+### **Ejercicio 2: Agregar un Contador de Edad**  
+**Objetivo:**  
+- Implementar un botón en `Persona.tsx` que aumente la edad de la persona al hacer clic.  
+
+**Instrucciones:**  
+1. Usa el hook `useState` para manejar la edad dentro del componente.  
+2. Agrega un botón con el texto **"Cumplir años"**.  
+3. Cada vez que el botón sea presionado, la edad debe incrementarse en 1.  
+
+---
+
+### **Ejercicio 3: Lista de Personas Dinámica**  
+**Objetivo:**  
+- Crear una lista de objetos `Persona` y renderizarla dinámicamente.  
+
+**Instrucciones:**  
+1. En `App.tsx`, crea un **array** de personas con `nombre`, `edad` y `ocupacion`.  
+2. Usa la función `map()` para recorrer la lista y renderizar múltiples componentes `Persona`.  
+3. Asegúrate de que cada persona tenga un `key` único en el renderizado.  
+
+---
 
 
 
-## X. Conclusión
+
 
 - Aprendimos a crear una aplicación en React con TypeScript.
 - Vimos cómo funcionan los **componentes** y el **paso de props**.
