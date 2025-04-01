@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-interface iPersona{
+export interface iPersona{
     nombre: string;
-    edad: number|null;
+    edad: number|null
 }
 
 export const Persona = (props:iPersona) => {
     const[visible, setVisible] = useState<boolean>(true);
+    
     function Visible(){
         if (visible === true){
             setVisible(false);
