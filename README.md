@@ -26,8 +26,7 @@ import { Persona } from './Persona';
 // Definir una interfaz para la estructura de una persona
 interface iPersona {
   nombre: string;
-  edad: number;
-  ocupacion: string;
+  edad: number
 }
 
 function App() {
@@ -37,8 +36,7 @@ function App() {
   // Estado para capturar los valores del formulario
   const [formData, setFormData] = useState<iPersona>({
     nombre: "",
-    edad: null,
-    ocupacion: ""
+    edad: null
   });
 
   // Función que maneja los cambios en los inputs
@@ -52,7 +50,7 @@ function App() {
   // Función que agrega una persona al array cuando se envía el formulario
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Evita que la página se recargue
-    if (formData.nombre && formData.edad && formData.ocupacion) {
+    if (formData.nombre && formData.edad) {
       setPersonas([...personas, { ...formData, edad: Number(formData.edad) }]);
       setFormData({ nombre: "", edad: null, ocupacion: "" }); // Limpia el formulario
     }
@@ -65,14 +63,13 @@ function App() {
       <form onSubmit={handleSubmit}>
         <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} required />
         <input type="number" name="edad" placeholder="Edad" value={formData.edad || ""} onChange={handleChange} required />
-        <input type="text" name="ocupacion" placeholder="Ocupación" value={formData.ocupacion} onChange={handleChange} required />
         <button type="submit">Agregar</button>
       </form>
 
       <h2>Lista de Personas</h2>
       {/* Recorre la lista y muestra los componentes Persona */}
       {personas.map((p, index) => (
-        <Persona key={index} nombre={p.nombre} edad={p.edad} ocupacion={p.ocupacion} />
+        <Persona key={index} nombre={p.nombre} edad={p.edad} />
       ))}
     </div>
   );
@@ -91,7 +88,7 @@ Muestra la información de cada persona en la lista.
 interface iPersona {
   nombre: string;
   edad: number;
-  ocupacion: string;
+
 }
 
 export const Persona = (props: iPersona) => {
@@ -99,7 +96,7 @@ export const Persona = (props: iPersona) => {
     <div>
       <p><strong>Nombre:</strong> {props.nombre}</p>
       <p><strong>Edad:</strong> {props.edad} años</p>
-      <p><strong>Ocupación:</strong> {props.ocupacion}</p>
+    
       <hr />
     </div>
   );
@@ -117,7 +114,7 @@ export const Persona = (props: iPersona) => {
 const [formData, setFormData] = useState<iPersona>({
   nombre: "",
   edad: null,
-  ocupacion: ""
+
 });
 ```
 
@@ -142,9 +139,9 @@ const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 ```typescript
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
-  if (formData.nombre && formData.edad && formData.ocupacion) {
+  if (formData.nombre && formData.edad) {
     setPersonas([...personas, { ...formData, edad: Number(formData.edad) }]);
-    setFormData({ nombre: "", edad: null, ocupacion: "" });
+    setFormData({ nombre: "", edad: null});
   }
 };
 ```
@@ -177,17 +174,16 @@ Se usa en varias partes del código:
 ```
 [ Nombre: _________ ]  
 [ Edad:  _________ ]  
-[ Ocupación: _________ ]  
 [ Agregar ]  
 ```
 ✅ **Cada vez que agregas una persona, aparece en la lista:**
 
 ```
 Lista de Personas
-Nombre: Juan   Edad: 30 años   Ocupación: Ingeniero  
---------------------------------------------------  
-Nombre: Ana    Edad: 25 años   Ocupación: Doctora  
---------------------------------------------------  
+Nombre: Juan   Edad: 30 años   
+-------------------------------
+Nombre: Ana    Edad: 25 años    
+------------------------------- 
 ```
 
 ---
