@@ -197,5 +197,3 @@ Nombre: Ana    Edad: 25 años
 ✅ `map()` se usa para renderizar listas de componentes dinámicamente.  
 
 ---
-
-🚀 **¿Quieres agregar más funcionalidades, como eliminar personas o editar datos?** 😊
